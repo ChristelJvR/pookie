@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Start a local server for the site and open it in your browser.
+# Usage: ./serve          (uses port 8765)
+#        ./serve 3000     (uses a port you pick)
+
+set -e
+
+PORT="${1:-8765}"
+URL="http://localhost:$PORT"
+
+cd "$(dirname "$0")"
+
+echo "Serving pookie at $URL  (press Ctrl+C to stop)"
+
+# Open the browser once the server is up (runs in the background).
+( sleep 1; open "$URL" ) &
+
+python3 -m http.server "$PORT"
